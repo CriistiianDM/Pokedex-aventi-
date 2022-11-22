@@ -67,13 +67,12 @@ body::-webkit-scrollbar {
     grid-template-columns: 100%;
     width: 90%;
     max-width: 20em;
-    height: 25em;
+    height: 26em;
     background: #fff;
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
+    border-radius: 1em;
     cursor: pointer;
-    overflow: hidden;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .circle-red-pokemon {
@@ -83,10 +82,11 @@ body::-webkit-scrollbar {
     width: 100%;
     height: 100%;
     background: #aa1515;
-    overflow: hidden;
 }
 
-.box-title {
+.box-title,
+.box-about-pokemon
+{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,11 +104,32 @@ body::-webkit-scrollbar {
     overflow: hidden;
 }
 
+.box-about-pokemon {
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+    grid-template-columns: 100%;
+    justify-items: center;
+    align-items: flex-end;
+    overflow: visible;
+}
+
 .title-pokemon {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
   font-size: 3em;
   color: #aa1515;
+  overflow: hidden;
+}
+
+.text-description {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 1.1em;
+    color: #575656;
+    line-height: 2em; 
 }
 
 .circle-white-pokemon {
@@ -120,7 +141,6 @@ body::-webkit-scrollbar {
     border-radius: 50%;
     margin-top: 3em;
     background: #fff;
-    overflow: hidden;
 }
 
 .circle-white-pokemon img {
@@ -128,4 +148,47 @@ body::-webkit-scrollbar {
     height: 75%;
     object-fit: cover;
     padding-bottom: 2em;
+}
+
+.img-svg {
+    width: 1.5em;
+    height: 1.5em;
+    object-fit: cover;
+    padding-right: 0.3em;
+}
+
+
+/*
+   Hover events
+*/
+.box-cart-pokemon:hover {
+    grid-template-rows: 45% 30% 25%;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+}
+
+.box-cart-pokemon:hover .circle-white-pokemon  {
+    width: 98%;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    align-items: flex-start;
+}
+
+.box-cart-pokemon:hover .circle-white-pokemon img   {
+    width: 50%;
+    height: 50%;
+    padding: 2.7em;
+}
+
+.box-cart-pokemon:hover .box-title {
+    border-bottom-right-radius: 0em;
+    border-bottom-left-radius: 0em;
+    border-bottom-color: #fff;
+    border-bottom-style: solid;
+    border-bottom-width: 0em;
+    border-left-color: #aa1515;
+    border-left-style: solid;
+    border-left-width: 0.2em;
+    border-right-color: #aa1515;
+    border-right-style: solid;
+    border-right-width: 0.2em;
 }

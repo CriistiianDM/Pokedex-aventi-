@@ -52,6 +52,20 @@ function get_filt_pokemon(data_array) {
                     <div class="box-title">
                         <p class="title-pokemon">${(data.forms)[0].name}</p>
                     </div>
+                    <div class="box-about-pokemon">
+                        <p class="text-description">
+                            <img class="img-svg" src="./img/sword-svgrepo-com.svg" />
+                            Ataque : ${(data.stats)[1].base_stat}
+                        </p>
+                        <p class="text-description">
+                            <img class="img-svg" src="./img/star-svgrepo-com.svg" />
+                            Xp base : ${(data.stats)[0].base_stat}
+                        </p>
+                        <p class="text-description">
+                            <img class="img-svg" src="./img/rule-svgrepo-com.svg" />
+                             Altura : ${data.height} cm
+                        </p>
+                    </div>
             </a>`
 
         });
