@@ -92,8 +92,15 @@ body::-webkit-scrollbar {
     align-items: center;
     border-bottom-right-radius: 1em;
     border-bottom-left-radius: 1em;
-    border: #aa1515 solid 0.2em;
-    border-top-color: transparent;
+    border-bottom-color: #aa1515;
+    border-bottom-style: solid;
+    border-bottom-width: 0.2em;
+    border-left-color: #aa1515;
+    border-left-style: solid;
+    border-left-width: 0.2em;
+    border-right-color: #aa1515;
+    border-right-style: solid;
+    border-right-width: 0.2em;
     overflow: hidden;
 }
 
@@ -107,17 +114,18 @@ body::-webkit-scrollbar {
 .circle-white-pokemon {
     display: grid;
     justify-items: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    align-items: flex-end;
+    width: 99%;
+    height: 99%;
     border-radius: 50%;
-    margin-top: 1em;
+    margin-top: 3em;
     background: #fff;
     overflow: hidden;
 }
 
 .circle-white-pokemon img {
-    width: 70%;
-    height: 70%;
+    width: 75%;
+    height: 75%;
     object-fit: cover;
+    padding-bottom: 2em;
 }
