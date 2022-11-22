@@ -1,0 +1,123 @@
+
+body ,html {
+  margin: 0;
+  padding: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+   Header
+*/
+.header {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    height: 6em;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: linear-gradient(to bottom, #aa1515 50%, #fff 50%);
+    box-shadow:  0 0 10px 0 rgba(0,0,0,0.5);
+    z-index: 2;
+    overflow: hidden;
+}
+
+.header img {
+    width: 90%;
+    max-width: 16em;
+    height: 4.5em;
+}
+
+/*
+   Main
+*/
+.container {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: 100%;
+    grid-gap: 1em;
+    justify-items: center;
+    align-items: center;
+    padding-top: 8em;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.box-container-elements {
+    display: grid;
+    grid-auto-rows: 30em;
+    grid-template-columns: repeat(auto-fit, minmax( min(100%, 20em), 1fr));
+    grid-gap: 1em;
+    justify-items: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    padding: 1em;
+    overflow: hidden;
+}
+
+.box-cart-pokemon {
+    display: grid;
+    grid-template-rows: 75% 25%;
+    grid-template-columns: 100%;
+    width: 90%;
+    max-width: 20em;
+    height: 25em;
+    background: #fff;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    cursor: pointer;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.circle-red-pokemon {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #aa1515;
+    overflow: hidden;
+}
+
+.box-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+    border: #aa1515 solid 0.2em;
+    border-top-color: transparent;
+    overflow: hidden;
+}
+
+.title-pokemon {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 3em;
+  color: #aa1515;
+}
+
+.circle-white-pokemon {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    margin-top: 1em;
+    background: #fff;
+    overflow: hidden;
+}
+
+.circle-white-pokemon img {
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+}

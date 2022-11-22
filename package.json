@@ -1,0 +1,21 @@
+{
+  "name": "pokedex-aventi-",
+  "version": "1.0.0",
+  "description": "Prueba de trabajo",
+  "main": "main.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CriistiianDM/Pokedex-aventi-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CriistiianDM/Pokedex-aventi-/issues"
+  },
+  "homepage": "https://github.com/CriistiianDM/Pokedex-aventi-#readme"
+}
