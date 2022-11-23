@@ -1,7 +1,7 @@
 {
   "name": "pokedex-aventi-",
   "version": "1.0.0",
-  "description": "Prueba de trabajo",
+  "description": "Pokedex aventi",
   "main": "main.js",
   "type": "commonjs",
   "scripts": {
