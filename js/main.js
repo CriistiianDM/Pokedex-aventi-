@@ -59,7 +59,6 @@ function get_filt_pokemon(data_array) {
         (name_pokemon).map( async(element) => {
             //sacar info del pokemon
             let data = await get_data_pokemon(element.name)
-            console.log(data);
             //guardar su info en el localstorage
             localStorage.setItem(`${element.name}`, JSON.stringify(data));
             //agregar a una caja elementos
