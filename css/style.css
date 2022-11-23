@@ -2,6 +2,7 @@
 body ,html {
   margin: 0;
   padding: 0;
+  background-color: #fff;
 }
 
 body::-webkit-scrollbar {
@@ -271,6 +272,7 @@ body::-webkit-scrollbar {
     width: 50%;
     height: 50%;
     padding: 2.7em;
+    transition: all 0.5s;
 }
 
 .box-cart-pokemon:hover .box-title {
