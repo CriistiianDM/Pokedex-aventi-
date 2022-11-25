@@ -35,6 +35,8 @@ let array_pokemon = {
     html_pokemon: '.box-container-elements'
 }
 
+var data_pokemon_all = new Object();
+
 
 /**
  * @author: cristian.machado@correounivalle.edu.co
@@ -91,7 +93,7 @@ function get_filt_pokemon(data_array) {
  * @returns {void}
  * 
 */
-const event_click = (data) => {
+const event_click = async (data) => {
 
     //quitar el opacity de una clase
     $('.box-container-cart').removeClass('display-none');
@@ -102,9 +104,10 @@ const event_click = (data) => {
     }, 500);
 
     //sacar info del localstorage
-    let data_pokemon = JSON.parse(localStorage.getItem(data));
+    let data_pokemon_all = await get_data_pokemon(data)
     //crear el html
-    let object_html = cart_pokemon_status_html(data_pokemon, data_pokemon.sprites.front_default);
+    console.log(data_pokemon_all);
+    let object_html = cart_pokemon_status_html(data_pokemon_all, data_pokemon_all.sprites.front_default);
     //agregar el html
     $('.container-pokemon-status').html(object_html);
 }
@@ -127,24 +130,22 @@ const event_close = () => {
 
 
 //traer la info de los pokemon
-async function fill_pokemon_optim(data_array) {
+async function fill_pokemon_optim() {
     try {
         //variables
         let max_pokemon = 100;
         let data_pokemon = await get_data_pokemon_optim(max_pokemon);
 
-        //limpiar el localstorage
-        localStorage.clear();
-        console.log(localStorage.length);
 
-        (data_pokemon.results).map(async (element) => {
+        (data_pokemon.results).map(async (element , index) => {
             //sacar info del pokemon
             let data = await get_data_pokemon(element.name)
-            localStorage.setItem(`${element.name}`, JSON.stringify(data));
+            data_pokemon_all[element.name] = data;
+            //insertar los pokemones en el html
             document.getElementsByClassName("box-container-elements")[0]
             .innerHTML += cart_pokemon_html(data, data.sprites.front_default)
-        });
-
+        })
+        
 
     } catch (error) {
         console.log(error);
@@ -153,7 +154,7 @@ async function fill_pokemon_optim(data_array) {
 
 
 //llamar a la funcion optimizada
-fill_pokemon_optim(array_pokemon);
+fill_pokemon_optim();
 
 //llamar a la funcion
 //get_filt_pokemon(array_pokemon);
