@@ -137,7 +137,6 @@ async function fill_pokemon_optim() {
         (data_pokemon.results).map(async (element , index) => {
             //sacar info del pokemon
             let data = await get_data_pokemon(element.name)
-            data_pokemon_all[element.name] = data;
             //insertar los pokemones en el html
             document.getElementsByClassName("box-container-elements")[0]
             .innerHTML += cart_pokemon_html(data, data.sprites.front_default)
