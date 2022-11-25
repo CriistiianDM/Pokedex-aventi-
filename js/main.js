@@ -35,8 +35,6 @@ let array_pokemon = {
     html_pokemon: '.box-container-elements'
 }
 
-var data_pokemon_all = new Object();
-
 
 /**
  * @author: cristian.machado@correounivalle.edu.co
@@ -106,7 +104,6 @@ const event_click = async (data) => {
     //sacar info del localstorage
     let data_pokemon_all = await get_data_pokemon(data)
     //crear el html
-    console.log(data_pokemon_all);
     let object_html = cart_pokemon_status_html(data_pokemon_all, data_pokemon_all.sprites.front_default);
     //agregar el html
     $('.container-pokemon-status').html(object_html);
