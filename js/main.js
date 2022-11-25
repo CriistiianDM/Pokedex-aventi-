@@ -19,7 +19,20 @@ let array_pokemon = {
     },
     {
         name: "charizard"
-    }]
+    },
+    {
+        name: "charizard"
+    },
+    {
+        name: "charizard"
+    },
+    {
+        name: "1"
+    },
+    {
+        name: "2"
+    }],
+    html_pokemon: '.box-container-elements'
 }
 
 
@@ -29,8 +42,8 @@ let array_pokemon = {
  * @returns {string}
  * 
 */
-function cart_pokemon_html(data,img) {
-    return  `<a type="button" onClick="event_click('${(data.forms)[0].name}')" class="box-cart-pokemon"> <div class="circle-red-pokemon"> <div class="circle-white-pokemon"> <img class="img-pokemon" src="${img}" /> </div> </div> <div class="box-title"> <p class="title-pokemon">${(data.forms)[0].name}</p> </div> <div class="box-about-pokemon"> <p class="text-description"> <img class="img-svg" src="./img/sword-svgrepo-com.svg" /> Ataque : ${(data.stats)[1].base_stat} </p> <p class="text-description"> <img class="img-svg" src="./img/star-svgrepo-com.svg" /> Xp base : ${(data.stats)[0].base_stat} </p> <p class="text-description"> <img class="img-svg" src="./img/rule-svgrepo-com.svg" /> Altura : ${data.height} cm </p> </div> </a>`
+function cart_pokemon_html(data, img) {
+    return `<a type="button" onClick="event_click('${(data.forms)[0].name}')" class="box-cart-pokemon"> <div class="circle-red-pokemon"> <div class="circle-white-pokemon"> <img class="img-pokemon" src="${img}" /> </div> </div> <div class="box-title"> <p class="title-pokemon">${(data.forms)[0].name}</p> </div> <div class="box-about-pokemon"> <p class="text-description"> <img class="img-svg" src="./img/sword-svgrepo-com.svg" /> Ataque : ${(data.stats)[1].base_stat} </p> <p class="text-description"> <img class="img-svg" src="./img/star-svgrepo-com.svg" /> Xp base : ${(data.stats)[0].base_stat} </p> <p class="text-description"> <img class="img-svg" src="./img/rule-svgrepo-com.svg" /> Altura : ${data.height} cm </p> </div> </a>`
 }
 
 /**
@@ -39,7 +52,7 @@ function cart_pokemon_html(data,img) {
  * @returns {string}
  * 
 */
-function cart_pokemon_status_html(data,img) {
+function cart_pokemon_status_html(data, img) {
     return `<div class="box-cart-pokemon-status"> <a type="button" onClick="event_close()" class="box-close-status"> x </a> <div class="box-img-status"> <img class="img-pokemon" src="${img}" /> </div> <div class="box-title-status"> <p class="title-pokemon">${(data.forms)[0].name}</p> </div> <div class="box-about-pokemon-status"> <p class="text-description"> <img class="img-svg" src="./img/sword-svgrepo-com.svg" /> Ataque : ${(data.stats)[1].base_stat} </p> <p class="text-description"> <img class="img-svg" src="./img/star-svgrepo-com.svg" /> Xp base : ${(data.stats)[0].base_stat} </p> <p class="text-description"> <img class="img-svg" src="./img/rule-svgrepo-com.svg" /> Altura : ${data.height} cm </p> <p class="text-description"> <img class="img-svg" src="./img/book-svgrepo-com.svg" /> Habilidad: ${(data.abilities)[0].ability.name} </p> <p class="text-description"> <img class="img-svg" src="./img/move-svgrepo-com.svg" /> Movimiento : ${(data.moves)[0].move.name} </p> </div> </div>`
 }
 
@@ -56,15 +69,15 @@ function get_filt_pokemon(data_array) {
         //variables
         var name_pokemon = data_array.data;
 
-        (name_pokemon).map( async(element) => {
+        (name_pokemon).map(async (element) => {
             //sacar info del pokemon
             let data = await get_data_pokemon(element.name)
             //guardar su info en el localstorage
             localStorage.setItem(`${element.name}`, JSON.stringify(data));
             //agregar a una caja elementos
             document.getElementsByClassName("box-container-elements")[0]
-            .innerHTML += cart_pokemon_html(data,`./img/${(data.forms)[0].name}.png`)
-        }); 
+                .innerHTML += cart_pokemon_html(data, `./img/${(data.forms)[0].name}.png`)
+        });
 
     } catch (error) {
         console.log(error);
@@ -79,7 +92,7 @@ function get_filt_pokemon(data_array) {
  * 
 */
 const event_click = (data) => {
-    
+
     //quitar el opacity de una clase
     $('.box-container-cart').removeClass('display-none');
 
@@ -91,7 +104,7 @@ const event_click = (data) => {
     //sacar info del localstorage
     let data_pokemon = JSON.parse(localStorage.getItem(data));
     //crear el html
-    let object_html =  cart_pokemon_status_html(data_pokemon,`./img/${data}.png`)
+    let object_html = cart_pokemon_status_html(data_pokemon, data_pokemon.sprites.front_default);
     //agregar el html
     $('.container-pokemon-status').html(object_html);
 }
@@ -107,13 +120,43 @@ const event_close = () => {
     //animate opacity
     $('.box-container-cart').animate({
         opacity: 0
-    }, 500 , () => {
+    }, 500, () => {
         $('.box-container-cart').addClass('display-none');
-    }); 
+    });
 }
 
+
+//traer la info de los pokemon
+async function fill_pokemon_optim(data_array) {
+    try {
+        //variables
+        let max_pokemon = 100;
+        let data_pokemon = await get_data_pokemon_optim(max_pokemon);
+
+        //limpiar el localstorage
+        localStorage.clear();
+        console.log(localStorage.length);
+
+        (data_pokemon.results).map(async (element) => {
+            //sacar info del pokemon
+            let data = await get_data_pokemon(element.name)
+            localStorage.setItem(`${element.name}`, JSON.stringify(data));
+            document.getElementsByClassName("box-container-elements")[0]
+            .innerHTML += cart_pokemon_html(data, data.sprites.front_default)
+        });
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+//llamar a la funcion optimizada
+fill_pokemon_optim(array_pokemon);
+
 //llamar a la funcion
-get_filt_pokemon(array_pokemon);
+//get_filt_pokemon(array_pokemon);
 
 
 
